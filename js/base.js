@@ -24,11 +24,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const cookieConsent = localStorage.getItem('cookie_consent');
 
     if (cookieConsent === null) {
-        cookieBanner.classList.remove('hidden');
+        setTimeout(() => {
+            cookieBanner.classList.remove('hidden');
+            setTimeout(() => {
+                cookieBanner.classList.remove('opacity-0', 'scale-95');
+                cookieBanner.classList.add('opacity-100', 'scale-100');
+            }, 50);
+        }, 1000);
     }
 
     acceptButton.addEventListener('click', function() {
         localStorage.setItem('cookie_consent', 'accepted');
-        cookieBanner.classList.add('hidden');
+
+        cookieBanner.classList.remove('opacity-100', 'scale-100');
+        cookieBanner.classList.add('opacity-0', 'scale-95');
+
+        setTimeout(() => {
+            cookieBanner.classList.add('hidden');
+        }, 500);
     });
 });
